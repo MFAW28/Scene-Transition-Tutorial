@@ -5,20 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    public Animator animationScene;
+    public Animator animSlideScene;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            animationScene.SetTrigger("SceneOut");
-            StartCoroutine(SceneTransition());
+            StartCoroutine(changeScene("Scene1"));
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            StartCoroutine(changeScene("Scene2"));
         }
     }
 
-    IEnumerator SceneTransition()
+    IEnumerator changeScene(string nameScene)
     {
+        animSlideScene.SetTrigger("SlideScene");
         yield return new WaitForSeconds(1f);
-        SceneManager.LoadScene("Scene2");
+        SceneManager.LoadScene(nameScene);
     }
 }
